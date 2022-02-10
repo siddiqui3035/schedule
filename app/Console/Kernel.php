@@ -20,7 +20,12 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('email:inactive-users')->hourlyAt(17);
+        $schedule->command('email:inactive-users')->dailyAt('18:05');
+    }
+
+    protected function scheduleTimezone()
+    {
+        return config('app.timezone');
     }
 
     /**
