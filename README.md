@@ -70,7 +70,8 @@
         $schedule->command('email:inactive-users')->hourlyAt(17);
     }
 
-14. Now run schedule for make it autometically.
+14. Now run schedule for make it autometically:
+
     php artisan schedule:work
 
 
