@@ -22,11 +22,13 @@
         }
 
 8. Create a artisan command for scheduleing 
+
     php artisan make:command EmailInactiveUsers 
 
 9. add created command signiture and discription.
 
     protected $signature = 'email:inactive-users';
+
     protected $description = 'Email Inactive Users';
 
 10. add logic on handel() method.
