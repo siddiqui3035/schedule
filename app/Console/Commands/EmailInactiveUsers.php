@@ -42,7 +42,7 @@ class EmailInactiveUsers extends Command
     {
         $limit = Carbon::now()->subDay(7);
 
-        $inactive_users = User::where('last_login', '<', '2022-02-10 10:54:39')->get();
+        $inactive_users = User::where('last_login', '<', '2022-02-10 09:00:00')->get();
 
         foreach($inactive_users as $user)
         {
