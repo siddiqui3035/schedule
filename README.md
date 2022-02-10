@@ -40,6 +40,7 @@
         $inactive_users = User::where('last_login', '<', '2022-02-10 09:00:00')->get();
 
         foreach($inactive_users as $user)
+        
         {
             $user->notify(new NotifyInactiveUser());
             $this->info('Email send to' .$user->email);
@@ -57,12 +58,14 @@
 12. Go to App\Console\kernel.php file and register artisan command
 
     protected $commands =[
+
         EmailInactiveUsers::class,
     ];
 
 13. Add schedule command on schedule function
 
     protected function schedule(Schedule $schedule)
+
     {
         $schedule->command('email:inactive-users')->hourlyAt(17);
     }
