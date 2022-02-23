@@ -1,11 +1,13 @@
-1. Create a laravel file and create a database.
-2. Create authentication.
-3. add last_login fiend in user table.
-4. run php artisan migrate.
-5. check user databse by php artisan tinker -> App\Models\User::all();
-6. add last_login in user model fillable array.
+## 1. Create a laravel file and create a database.
+## 2. Create authentication.
+## 3. add last_login fiend in user table.
+## 4. run php artisan migrate.
+## 5. check user databse by php artisan tinker -> App\Models\User::all();
+## 6. add last_login in user model fillable array.
 
-7. add last_login save process on App\Http\Controller\Auth\AuthenticatedSessionController 
+## 7. add last_login save process on App\Http\Controller\Auth\AuthenticatedSessionController 
+
+```php
 
     public function store(LoginRequest $request)
         {
@@ -20,18 +22,27 @@
 
             return redirect()->intended(RouteServiceProvider::HOME);
         }
+```
+## 8. Create a artisan command for scheduleing 
 
-8. Create a artisan command for scheduleing 
+```php
 
     php artisan make:command EmailInactiveUsers 
 
-9. add created command signiture and discription.
+```
+
+## 9. add created command signiture and discription.
+
+```php
 
     protected $signature = 'email:inactive-users';
 
     protected $description = 'Email Inactive Users';
 
-10. add logic on handel() method.
+```
+## 10. add logic on handel() method.
+
+```php
 
     public function handle()
     {
@@ -49,20 +60,27 @@
         // $this->info($limit);
         // return 0;
     }
-11. Now create a notification for email tamplate
+
+```
+## 11. Now create a notification for email tamplate
+```php
 
     php artisan make:notification NotifyInactiveUser
 
     now implement (implements ShouldQueue) on Notification class.
 
-12. Go to App\Console\kernel.php file and register artisan command
+```
+## 12. Go to App\Console\kernel.php file and register artisan command
+```php
 
     protected $commands =[
 
         EmailInactiveUsers::class,
     ];
 
-13. Add schedule command on schedule function
+```
+## 13. Add schedule command on schedule function
+```php
 
     protected function schedule(Schedule $schedule)
 
@@ -70,10 +88,14 @@
         $schedule->command('email:inactive-users')->hourlyAt(17);
     }
 
-14. Now run schedule for make it autometically.
+```
+
+## 14. Now run schedule for make it autometically.
+```php
 
     php artisan schedule:work
 
+```
 
 
 
